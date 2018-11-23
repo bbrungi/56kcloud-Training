@@ -98,7 +98,7 @@ Now that we have our logging infrastructure setup, let's create a service that w
     $ LOGSTASH=$(ifconfig eth0 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')
 
     # on mac
-    $ LOGSTASH=$(ifconfig | grep 'inet addr' | grep 192 | awk '{print $3}'
+    $ LOGSTASH=$(ifconfig | grep 'inet' | grep -v 127.0.0.1 | awk '{print $3}'
     ```
 
 2. Now let's start a new test service and pass some logging options so that Docker knows to ship our logs to Logstash.
